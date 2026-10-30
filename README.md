@@ -1,21 +1,8 @@
-"""
-Builds the portfolio website for Muhammad Abdullah (GitHub: Abdullah47-sudo).
 
-Run:   python build_site.py
-Output: a folder called  site/  containing index.html, images, sitemap.xml, robots.txt
-
-You only edit the SETTINGS section below. You never need to touch HTML.
-"""
-import json
-from datetime import date
-from html import escape
-from pathlib import Path
-
-# ----------------------------- SETTINGS -----------------------------
 NAME = "Muhammad Abdullah"
 USER = "Abdullah47-sudo"
 UNIVERSITY = "UCP"
-EMAIL = "your-email@example.com"            # <- change this
+EMAIL = "abdullahjv791@gmail.com"           
 BASE_URL = f"https://{USER.lower()}.github.io"
 
 TAGLINE = "Software Engineering student who enjoys solving problems and writing clean Java."
@@ -30,7 +17,6 @@ SKILLS = {
     "Tools": ["IntelliJ IDEA", "VS Code", "GitHub"],
     "Concepts": ["Problem Solving", "Data Structures & Algorithms", "Object-Oriented Programming"],
 }
-# Add projects here as you build them: (title, description, link)
 PROJECTS = [
     # ("Library Manager", "Console app in Java using OOP.", f"https://github.com/{USER}/library-manager"),
 ]
