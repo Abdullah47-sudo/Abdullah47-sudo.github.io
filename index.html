@@ -39,6 +39,45 @@ footer{background:var(--deep);color:#dbe5f7;padding:36px 0;margin-top:30px}
 footer a{color:#ffd98a}.tags{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}.tags span{font-size:.9rem;opacity:.85}
 .icon{width:44px;height:44px;display:block;margin-bottom:10px}.split{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center}.figure svg{width:100%;height:auto;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px}.figure figcaption{color:var(--muted);font-size:.95rem;margin-top:8px}details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px}summary{cursor:pointer;font-weight:600}details p{margin:10px 0 0;color:var(--muted)}
 @media(max-width:760px){.split{grid-template-columns:1fr}.hero .wrap{grid-template-columns:1fr}nav a{margin:0 14px 0 0}}
+
+/* Dark theme */
+:root{
+  color-scheme:dark;
+  --ink:#f3f6ff;
+  --muted:#b7c3d8;
+  --bg:#0b1220;
+  --card:#131f33;
+  --line:#293a55;
+  --accent:#38bdf8;
+  --deep:#7dd3fc;
+}
+body{background:var(--bg);color:var(--ink)}
+a{color:#7dd3fc}
+a:hover{color:#bae6fd}
+header.top{background:#0e192b;border-bottom:1px solid var(--line)}
+.brand{color:#f8fafc}
+nav a{color:#c3cee0}
+nav a:hover{color:#7dd3fc}
+.hero{background:linear-gradient(135deg,#0b1220 0%,#101d32 100%)}
+.lead,.handle{color:var(--muted)}
+.btn.main{background:#0284c7;color:#fff;box-shadow:0 8px 22px rgba(2,132,199,.22)}
+.btn.main:hover{background:#0369a1}
+.btn.alt{border:2px solid #7dd3fc;color:#e0f2fe;background:rgba(125,211,252,.06)}
+.btn.alt:hover{background:rgba(125,211,252,.14)}
+.photo img{border-color:#1e3048;box-shadow:0 12px 34px rgba(0,0,0,.42)}
+.card{background:var(--card);border-color:var(--line);box-shadow:0 8px 24px rgba(0,0,0,.14)}
+.card p,details p,.figure figcaption{color:var(--muted)}
+.chip{background:#17263d;border-color:#344965;color:#e5eefb}
+footer{background:#070d18;color:#dbeafe;border-top:1px solid #24344d}
+footer a{color:#7dd3fc}
+.figure svg{background:#131f33;border-color:var(--line)}
+details{background:var(--card);border-color:var(--line);color:var(--ink)}
+summary{color:#f3f6ff}
+::selection{background:#075985;color:#fff}
+@media(prefers-reduced-motion:no-preference){
+  .btn,nav a,a{transition:color .2s ease,background-color .2s ease,border-color .2s ease}
+}
+
 </style></head><body>
 <header class="top"><div class="wrap"><a class="brand" href="#top">Muhammad Abdullah</a>
 <nav aria-label="Main"><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a></nav></div></header>
