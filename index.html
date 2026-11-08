@@ -1,714 +1,637 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Muhammad Abdullah | Software Engineer Portfolio</title>
+  <!-- SEO: these tags control how Google and social apps show your site -->
+  <title>Muhammad Abdullah | Software Engineering Student &amp; Java Developer</title>
+  <meta name="description" content="Explore the portfolio of Muhammad Abdullah, a Software Engineering student at UCP learning Java, Object-Oriented Programming, and backend development." />
+  <meta name="keywords" content="Muhammad Abdullah, Software Engineering student, UCP, Java, OOP, backend development, portfolio" />
+  <meta name="author" content="Muhammad Abdullah" />
+  <meta name="theme-color" content="#070b1a" />
+  <meta property="og:title" content="Muhammad Abdullah | Software Engineering Student & Java Developer" />
+  <meta property="og:description" content="Java, OOP and backend development journey of a UCP Software Engineering student." />
+  <meta property="og:type" content="website" />
 
-    <meta name="description" content="Portfolio of Muhammad Abdullah, Software Engineering student at UCP, learning Java, OOP and Backend Development.">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-    <meta name="keywords" content="Muhammad Abdullah, Java Developer, Software Engineering Student, UCP, Backend Developer, Java, OOP">
+<style>
+/* =========================================================
+   1. DESIGN TOKENS - change colors and fonts here only
+   ========================================================= */
+:root {
+  --bg: #070b1a;
+  --bg-soft: #0c1226;
+  --glass: rgba(255, 255, 255, 0.045);
+  --border: rgba(255, 255, 255, 0.1);
+  --text: #e9edf9;
+  --muted: #9ba6c3;
+  --purple: #8b5cf6;
+  --blue: #3ea8ff;
+  --grad: linear-gradient(135deg, var(--purple), var(--blue));
+  --font: "Sora", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --radius: 18px;
+}
 
-    <meta name="author" content="Muhammad Abdullah">
+/* =========================================================
+   2. BASE
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  line-height: 1.7;
+  color: var(--muted);
+  background:
+    radial-gradient(900px 500px at 85% -5%, rgba(139, 92, 246, 0.18), transparent 60%),
+    radial-gradient(700px 500px at -5% 35%, rgba(62, 168, 255, 0.1), transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
+}
+a { color: inherit; text-decoration: none; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+h1, h2, h3 { color: #fff; line-height: 1.2; margin: 0; }
+h2 { font-size: clamp(1.7rem, 4vw, 2.3rem); margin-bottom: 0.6rem; }
+h3 { font-size: 1.1rem; margin-bottom: 0.7rem; }
+p { margin: 0 0 1rem; }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 
-    <meta property="og:title" content="Muhammad Abdullah | Developer Portfolio">
-    <meta property="og:description" content="Software Engineering Student | Java Developer | Aspiring Backend Engineer">
-    <meta property="og:type" content="website">
+.container { width: min(1120px, 92%); margin-inline: auto; }
+.container.narrow { width: min(760px, 92%); }
+.section { padding: 5.5rem 0; }
+.sub { margin-bottom: 2rem; }
+.muted { color: var(--muted); font-size: 0.95rem; }
+.grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
-    <link rel="stylesheet" href="style.css">
+/* =========================================================
+   3. NAVIGATION
+   ========================================================= */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(7, 11, 26, 0.6);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s, background 0.3s;
+}
+.nav.scrolled { border-color: var(--border); background: rgba(7, 11, 26, 0.85); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.logo { font-weight: 700; font-size: 1.25rem; color: #fff; }
+.logo span { color: var(--purple); }
+.nav-links { display: flex; gap: 0.4rem; }
+.nav-links a { padding: 0.5rem 0.9rem; border-radius: 999px; font-size: 0.92rem; transition: color 0.2s, background 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: #fff; background: var(--glass); }
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+.menu-btn { display: none; background: none; border: 0; padding: 8px; cursor: pointer; }
+.menu-btn span { display: block; width: 24px; height: 2px; margin: 5px 0; background: #fff; transition: transform 0.3s, opacity 0.3s; }
+.menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+/* =========================================================
+   4. BUTTONS
+   ========================================================= */
+.btn {
+  display: inline-block; padding: 0.85rem 1.6rem; border-radius: 999px;
+  font: 600 0.95rem var(--font); cursor: pointer; border: 1px solid transparent;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--grad); color: #fff; box-shadow: 0 8px 24px rgba(139, 92, 246, 0.35); }
+.btn-ghost { color: #fff; border-color: var(--border); background: var(--glass); }
+.btn-ghost:hover { background: rgba(255, 255, 255, 0.09); }
+.btn-small { padding: 0.55rem 1rem; font-size: 0.82rem; }
+.btn-row { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.6rem; }
 
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+/* =========================================================
+   5. HERO
+   ========================================================= */
+.hero { padding: 5rem 0 4rem; }
+.hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center; }
+.hero h1 { font-size: clamp(2.3rem, 6vw, 3.8rem); letter-spacing: -0.02em; }
+.role { color: var(--blue); font-weight: 500; margin: 1rem 0; }
+.lead { max-width: 56ch; }
+
+.code-window {
+  background: rgba(12, 18, 38, 0.8); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 60px rgba(139, 92, 246, 0.15);
+  backdrop-filter: blur(10px);
+}
+.code-bar { display: flex; align-items: center; gap: 7px; padding: 0.8rem 1rem; border-bottom: 1px solid var(--border); }
+.code-bar i { width: 11px; height: 11px; border-radius: 50%; background: #3a4263; }
+.code-bar span { margin-left: auto; font: 0.78rem var(--mono); color: var(--muted); }
+.code-window pre { margin: 0; padding: 1.3rem; overflow-x: auto; }
+.code-window code { font: 0.85rem/1.8 var(--mono); color: #cfd6ee; }
+.k { color: var(--purple); } .t { color: var(--blue); } .s { color: #7ee0b5; } .f { color: #f2c97d; } .c { color: #5d688c; }
+.caret { display: inline-block; width: 8px; height: 1em; margin-left: 3px; vertical-align: text-bottom; background: var(--blue); animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* =========================================================
+   6. CARDS, CHIPS, GRIDS
+   ========================================================= */
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.3rem; }
+.card {
+  background: var(--glass); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1.6rem; backdrop-filter: blur(10px);
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+.card:hover { transform: translateY(-4px); border-color: rgba(139, 92, 246, 0.5); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35); }
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chips li { padding: 0.35rem 0.8rem; font-size: 0.82rem; color: #dfe5f7; border: 1px solid var(--border); border-radius: 999px; background: rgba(139, 92, 246, 0.12); }
+.project p { min-height: 3.4em; }
+
+/* =========================================================
+   7. TIMELINE
+   ========================================================= */
+.timeline { margin-top: 2rem; border-left: 2px solid var(--border); padding-left: 1.8rem; }
+.timeline li { position: relative; }
+.timeline li::before {
+  content: ""; position: absolute; left: calc(-1.8rem - 7px); top: 0.35rem;
+  width: 12px; height: 12px; border-radius: 50%; background: var(--grad); box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.2);
+}
+
+/* =========================================================
+   8. CONTACT
+   ========================================================= */
+.contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: start; }
+.contact-list li { display: flex; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid var(--border); }
+.contact-list span { width: 80px; color: #fff; font-weight: 500; }
+.contact-list a:hover { color: var(--blue); }
+.form label { display: block; margin: 0 0 0.35rem; font-size: 0.88rem; color: #fff; }
+.form input, .form textarea {
+  width: 100%; margin-bottom: 1.1rem; padding: 0.8rem 1rem; font: 0.95rem var(--font); color: #fff;
+  background: rgba(7, 11, 26, 0.6); border: 1px solid var(--border); border-radius: 12px;
+}
+.form input:focus, .form textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(62, 168, 255, 0.2); }
+.form-note { margin: 1rem 0 0; font-size: 0.88rem; color: var(--blue); }
+
+/* =========================================================
+   9. FOOTER + BACK TO TOP
+   ========================================================= */
+.footer { border-top: 1px solid var(--border); padding: 2rem 0; }
+.footer-inner { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; }
+.footer p { margin: 0; font-size: 0.9rem; }
+.socials { display: flex; gap: 0.6rem; }
+.socials a { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border); transition: color 0.2s, border-color 0.2s; }
+.socials a:hover { color: #fff; border-color: var(--purple); }
+.to-top {
+  position: fixed; right: 1.2rem; bottom: 1.2rem; width: 46px; height: 46px; border-radius: 50%;
+  border: 0; font-size: 1.2rem; color: #fff; background: var(--grad); cursor: pointer;
+  opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity 0.3s, transform 0.3s;
+}
+.to-top.show { opacity: 1; pointer-events: auto; transform: none; }
+
+/* =========================================================
+   10. SCROLL REVEAL (class added by the script)
+   ========================================================= */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s, transform 0.7s; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* =========================================================
+   11. RESPONSIVE
+   ========================================================= */
+@media (max-width: 860px) {
+  .hero-grid, .contact-grid { grid-template-columns: 1fr; }
+  .section { padding: 4rem 0; }
+  .menu-btn { display: block; }
+  .nav-links {
+    position: absolute; left: 0; right: 0; top: 68px; flex-direction: column; gap: 0;
+    padding: 0.6rem 4%; background: rgba(7, 11, 26, 0.97); border-bottom: 1px solid var(--border);
+    max-height: 0; overflow: hidden; visibility: hidden; transition: max-height 0.35s, visibility 0.35s;
+  }
+  .nav-links.open { max-height: 420px; visibility: visible; }
+  .nav-links a { display: block; padding: 0.9rem 0.5rem; border-radius: 8px; }
+}
+
+/* Respect users who turn off animations in their system */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* =========================================================
+   12. ADDITIONS: hero effects, skills, projects, forms
+   ========================================================= */
+.hero { position: relative; overflow: hidden; }
+.hero-grid { position: relative; z-index: 1; }
+
+.blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.35; animation: drift 14s ease-in-out infinite alternate; }
+.b1 { width: 380px; height: 380px; background: var(--purple); top: -120px; right: 5%; }
+.b2 { width: 320px; height: 320px; background: var(--blue); bottom: -120px; left: 0; animation-delay: -6s; }
+@keyframes drift { to { transform: translate(40px, 30px) scale(1.15); } }
+
+.typed-line { font: 500 1rem var(--mono); color: #fff; margin: 0 0 0.6rem; min-height: 1.7em; }
+.tagline { color: #cdd5ee; font-style: italic; }
+
+.hero-visual { position: relative; }
+.hero-visual .code-window { animation: float 6s ease-in-out infinite; }
+.float-chip {
+  position: absolute; z-index: 2; padding: 0.4rem 0.9rem; font: 500 0.8rem var(--mono); color: #fff;
+  background: rgba(139, 92, 246, 0.25); border: 1px solid var(--border); border-radius: 999px;
+  backdrop-filter: blur(8px); box-shadow: 0 0 24px rgba(139, 92, 246, 0.4); animation: float 5s ease-in-out infinite;
+}
+.c1 { top: -16px; right: 10%; } .c2 { bottom: 12%; left: -14px; animation-delay: -2s; } .c3 { bottom: -14px; right: 14%; animation-delay: -3.5s; }
+@keyframes float { 50% { transform: translateY(-10px); } }
+
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1rem; margin-top: 2.5rem; }
+.facts .card { padding: 1.1rem 1.3rem; }
+.facts span { display: block; font-size: 0.8rem; }
+.facts strong { color: #fff; font-weight: 600; }
+
+.cat { margin: 2rem 0 1rem; color: var(--blue); font-size: 1rem; }
+.skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+.skill { display: flex; align-items: center; gap: 0.9rem; padding: 1rem 1.2rem; color: #fff; font-weight: 500; }
+.ico { display: grid; place-items: center; flex: none; width: 40px; height: 40px; border-radius: 12px; background: rgba(139, 92, 246, 0.18); border: 1px solid var(--border); }
+.ico.big { width: 52px; height: 52px; font-size: 1.5rem; margin-bottom: 1rem; }
+
+.project { position: relative; }
+.tag { position: absolute; top: 1.3rem; right: 1.3rem; padding: 0.2rem 0.7rem; font-size: 0.72rem; color: #f2c97d; border: 1px dashed rgba(242, 201, 125, 0.5); border-radius: 999px; }
+
+.list li { position: relative; padding: 0.3rem 0 0.3rem 1.6rem; color: var(--text); }
+.list li::before { content: "✓"; position: absolute; left: 0; color: var(--blue); font-weight: 700; }
+
+.form input.invalid, .form textarea.invalid { border-color: #ff6b81; }
+.err { display: block; min-height: 1.2em; margin: -0.7rem 0 0.7rem; font-size: 0.78rem; color: #ff8fa0; }
+.form-note { color: var(--muted); }
+.form-note.ok { color: #7ee0b5; }
+
+.footer-links { display: flex; gap: 1.2rem; font-size: 0.9rem; }
+.footer-links a:hover { color: #fff; }
+
+@media (max-width: 860px) { .float-chip { display: none; } }
+</style>
 </head>
-
 <body>
 
-    <!-- Background Effects -->
-    <div class="background-glow glow-one"></div>
-    <div class="background-glow glow-two"></div>
-
-    <!-- NAVIGATION -->
-    <header>
-        <nav class="navbar container">
-
-            <a href="#home" class="logo">
-                <span class="logo-bracket">&lt;</span>
-                Abdullah
-                <span class="logo-bracket">/&gt;</span>
-            </a>
-
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-
-            <a href="#contact" class="nav-button">Let's Talk <i class="fas fa-arrow-up-right-from-square"></i></a>
-
-            <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">
-                <i class="fas fa-bars"></i>
-            </button>
-
-        </nav>
-    </header>
-
-
-    <main>
-
-        <!-- HERO SECTION -->
-        <section class="hero container" id="home">
-
-            <div class="hero-content reveal">
-
-                <div class="availability">
-                    <span class="status-dot"></span>
-                    Currently Learning & Building
-                </div>
-
-                <p class="hello">HELLO, WORLD! I'M</p>
-
-                <h1>
-                    Muhammad <br>
-                    <span class="gradient-text">Abdullah.</span>
-                </h1>
-
-                <h2>
-                    I'm a <span id="typing"></span>
-                </h2>
-
-                <p class="hero-description">
-                    A Software Engineering student at UCP, passionate about
-                    programming, Java development, problem-solving and
-                    building the future through technology.
-                </p>
-
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn primary-btn">
-                        Explore My Work <i class="fas fa-arrow-right"></i>
-                    </a>
-
-                    <a href="#contact" class="btn secondary-btn">
-                        Contact Me
-                    </a>
-                </div>
-
-                <div class="social-links">
-                    <a href="mailto:abdullahjv791@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-
-            </div>
-
-
-            <!-- CODE CARD -->
-            <div class="hero-visual reveal">
-
-                <div class="code-card">
-
-                    <div class="code-header">
-                        <div class="window-dots">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-
-                        <span>Abdullah.java</span>
-
-                        <i class="fas fa-code"></i>
-                    </div>
-
-                    <div class="code-content">
-                        <p><span class="code-purple">public class</span> <span class="code-yellow">Abdullah</span> {</p>
-
-                        <p class="indent">
-                            <span class="code-purple">String</span> name =
-                            <span class="code-green">"Muhammad Abdullah"</span>;
-                        </p>
-
-                        <p class="indent">
-                            <span class="code-purple">String</span> degree =
-                            <span class="code-green">"Software Engineering"</span>;
-                        </p>
-
-                        <p class="indent">
-                            <span class="code-purple">int</span> semester =
-                            <span class="code-orange">3</span>;
-                        </p>
-
-                        <p class="indent">
-                            <span class="code-purple">String</span> language =
-                            <span class="code-green">"Java"</span>;
-                        </p>
-
-                        <p class="indent">
-                            <span class="code-purple">String</span> goal =
-                            <span class="code-green">"Backend Developer"</span>;
-                        </p>
-
-                        <br>
-
-                        <p class="indent">
-                            <span class="code-purple">void</span> <span class="code-yellow">keepLearning</span>() {
-                        </p>
-
-                        <p class="indent double-indent">
-                            <span class="code-purple">while</span> (true) {
-                        </p>
-
-                        <p class="indent triple-indent">
-                            improveSkills();
-                        </p>
-
-                        <p class="indent triple-indent">
-                            buildProjects();
-                        </p>
-
-                        <p class="indent double-indent">}</p>
-
-                        <p class="indent">}</p>
-
-                        <p>}</p>
-                    </div>
-
-                    <div class="code-footer">
-                        <span><i class="fas fa-circle"></i> Java</span>
-                        <span>UTF-8</span>
-                    </div>
-
-                </div>
-
-                <div class="floating-tag tag-one">
-                    <i class="fab fa-java"></i> Java Developer
-                </div>
-
-                <div class="floating-tag tag-two">
-                    <i class="fas fa-laptop-code"></i> Learning OOP
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ABOUT SECTION -->
-        <section class="section container" id="about">
-
-            <div class="section-heading reveal">
-                <span class="section-label">GET TO KNOW ME</span>
-                <h2>About <span class="gradient-text">Me</span></h2>
-                <p>A little introduction about my journey in technology.</p>
-            </div>
-
-            <div class="about-grid">
-
-                <div class="about-text reveal">
-                    <h3>Turning curiosity into <span class="gradient-text">code.</span></h3>
-
-                    <p>
-                        I'm Muhammad Abdullah, a Software Engineering student
-                        at the University of Central Punjab (UCP).
-                        Currently, I'm in my 3rd semester.
-                    </p>
-
-                    <p>
-                        My current focus is Java programming and
-                        Object-Oriented Programming. I enjoy understanding
-                        how software works and how applications are built
-                        behind the scenes.
-                    </p>
-
-                    <p>
-                        I'm particularly interested in Backend Development
-                        and continuously improving my coding and
-                        problem-solving abilities.
-                    </p>
-
-                    <p>
-                        My goal is to become a professional Backend
-                        Software Engineer and build useful applications.
-                    </p>
-
-                </div>
-
-
-                <div class="about-cards reveal">
-
-                    <div class="info-card">
-                        <i class="fas fa-graduation-cap"></i>
-                        <div>
-                            <h4>Degree</h4>
-                            <p>Software Engineering</p>
-                        </div>
-                    </div>
-
-                    <div class="info-card">
-                        <i class="fas fa-university"></i>
-                        <div>
-                            <h4>University</h4>
-                            <p>University of Central Punjab</p>
-                        </div>
-                    </div>
-
-                    <div class="info-card">
-                        <i class="fas fa-book-open"></i>
-                        <div>
-                            <h4>Semester</h4>
-                            <p>3rd Semester</p>
-                        </div>
-                    </div>
-
-                    <div class="info-card">
-                        <i class="fas fa-code"></i>
-                        <div>
-                            <h4>Currently Learning</h4>
-                            <p>Java & OOP</p>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- SKILLS SECTION -->
-        <section class="section container" id="skills">
-
-            <div class="section-heading reveal">
-                <span class="section-label">WHAT I WORK WITH</span>
-                <h2>My Technical <span class="gradient-text">Skills</span></h2>
-                <p>Technologies and tools I'm learning and exploring.</p>
-            </div>
-
-
-            <div class="skills-grid">
-
-                <div class="skill-card reveal">
-                    <div class="skill-icon java-icon">
-                        <i class="fab fa-java"></i>
-                    </div>
-
-                    <h3>Java</h3>
-                    <p>Learning Java programming and building a strong foundation.</p>
-                    <span class="skill-tag">Currently Learning</span>
-                </div>
-
-
-                <div class="skill-card reveal">
-                    <div class="skill-icon oop-icon">
-                        <i class="fas fa-cubes"></i>
-                    </div>
-
-                    <h3>Object-Oriented Programming</h3>
-                    <p>Exploring classes, objects, inheritance and polymorphism.</p>
-                    <span class="skill-tag">Currently Learning</span>
-                </div>
-
-
-                <div class="skill-card reveal">
-                    <div class="skill-icon vscode-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-
-                    <h3>VS Code</h3>
-                    <p>Writing, editing and managing programming projects.</p>
-                    <span class="skill-tag">Development Tool</span>
-                </div>
-
-
-                <div class="skill-card reveal">
-                    <div class="skill-icon idea-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-
-                    <h3>IntelliJ IDEA</h3>
-                    <p>Practicing Java development and writing code.</p>
-                    <span class="skill-tag">Development Tool</span>
-                </div>
-
-
-                <div class="skill-card reveal">
-                    <div class="skill-icon github-icon">
-                        <i class="fab fa-github"></i>
-                    </div>
-
-                    <h3>GitHub</h3>
-                    <p>Managing repositories and sharing programming projects.</p>
-                    <span class="skill-tag">Version Control</span>
-                </div>
-
-
-                <div class="skill-card reveal">
-                    <div class="skill-icon backend-icon">
-                        <i class="fas fa-server"></i>
-                    </div>
-
-                    <h3>Backend Development</h3>
-                    <p>Exploring server-side programming and application logic.</p>
-                    <span class="skill-tag">Area of Interest</span>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- LEARNING JOURNEY -->
-        <section class="section container" id="journey">
-
-            <div class="section-heading reveal">
-                <span class="section-label">GROWTH & PROGRESS</span>
-                <h2>My Learning <span class="gradient-text">Journey</span></h2>
-                <p>What I'm currently learning and improving.</p>
-            </div>
-
-            <div class="journey-grid">
-
-                <div class="journey-card reveal">
-                    <span class="journey-number">01</span>
-                    <i class="fab fa-java"></i>
-                    <h3>Java Programming</h3>
-                    <p>
-                        Variables, data types, conditions, loops,
-                        arrays, methods and functions.
-                    </p>
-                </div>
-
-                <div class="journey-card reveal">
-                    <span class="journey-number">02</span>
-                    <i class="fas fa-cubes"></i>
-                    <h3>OOP Concepts</h3>
-                    <p>
-                        Classes, objects, constructors, encapsulation,
-                        inheritance, polymorphism and abstraction.
-                    </p>
-                </div>
-
-                <div class="journey-card reveal">
-                    <span class="journey-number">03</span>
-                    <i class="fas fa-server"></i>
-                    <h3>Backend Development</h3>
-                    <p>
-                        Exploring server-side programming,
-                        application logic and backend technologies.
-                    </p>
-                </div>
-
-                <div class="journey-card reveal">
-                    <span class="journey-number">04</span>
-                    <i class="fas fa-brain"></i>
-                    <h3>Problem Solving</h3>
-                    <p>
-                        Improving logical thinking, programming
-                        skills and writing clean code.
-                    </p>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- PROJECTS SECTION -->
-        <section class="section container" id="projects">
-
-            <div class="section-heading reveal">
-                <span class="section-label">MY WORK</span>
-                <h2>Featured <span class="gradient-text">Projects</span></h2>
-                <p>My programming practice and development projects.</p>
-            </div>
-
-
-            <div class="projects-grid">
-
-                <div class="project-card reveal">
-
-                    <div class="project-image project-image-one">
-                        <i class="fab fa-java"></i>
-                        <span>JAVA</span>
-                    </div>
-
-                    <div class="project-content">
-                        <span class="project-category">Java Programming</span>
-                        <h3>Java Programming Projects</h3>
-
-                        <p>
-                            A collection of Java practice programs
-                            and programming exercises.
-                        </p>
-
-                        <div class="project-tech">
-                            <span>Java</span>
-                            <span>Programming</span>
-                        </div>
-
-                        <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="project-link">
-                            GitHub Repository <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-
-                </div>
-
-
-                <div class="project-card reveal">
-
-                    <div class="project-image project-image-two">
-                        <i class="fas fa-cubes"></i>
-                        <span>OOP</span>
-                    </div>
-
-                    <div class="project-content">
-                        <span class="project-category">Object-Oriented Programming</span>
-                        <h3>OOP Practice Projects</h3>
-
-                        <p>
-                            Practice applications demonstrating
-                            classes, objects and OOP fundamentals.
-                        </p>
-
-                        <div class="project-tech">
-                            <span>Java</span>
-                            <span>OOP</span>
-                        </div>
-
-                        <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="project-link">
-                            GitHub Repository <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-
-                </div>
-
-
-                <div class="project-card reveal">
-
-                    <div class="project-image project-image-three">
-                        <i class="fas fa-server"></i>
-                        <span>BACKEND</span>
-                    </div>
-
-                    <div class="project-content">
-                        <span class="project-category">Backend Development</span>
-                        <h3>Backend Learning Projects</h3>
-
-                        <p>
-                            A place for future backend applications
-                            and server-side programming projects.
-                        </p>
-
-                        <div class="project-tech">
-                            <span>Java</span>
-                            <span>Backend</span>
-                        </div>
-
-                        <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="project-link">
-                            GitHub Repository <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <p class="project-note">
-                These are starter project placeholders. Replace them with your actual projects and repository links.
-            </p>
-
-        </section>
-
-
-        <!-- EDUCATION SECTION -->
-        <section class="section container" id="education">
-
-            <div class="section-heading reveal">
-                <span class="section-label">MY ACADEMIC BACKGROUND</span>
-                <h2>My <span class="gradient-text">Education</span></h2>
-                <p>My academic journey in software engineering.</p>
-            </div>
-
-
-            <div class="education-card reveal">
-
-                <div class="education-icon">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-
-                <div class="education-details">
-                    <span class="education-status">CURRENTLY STUDYING</span>
-
-                    <h3>Bachelor of Science in Software Engineering</h3>
-
-                    <h4>University of Central Punjab (UCP)</h4>
-
-                    <p>
-                        Currently pursuing my degree and developing
-                        my programming and software engineering skills.
-                    </p>
-
-                    <div class="education-meta">
-                        <span><i class="fas fa-book"></i> 3rd Semester</span>
-                        <span><i class="fas fa-code"></i> Software Engineering</span>
-                    </div>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- CONTACT SECTION -->
-        <section class="section container" id="contact">
-
-            <div class="section-heading reveal">
-                <span class="section-label">GET IN TOUCH</span>
-                <h2>Let's <span class="gradient-text">Connect</span></h2>
-
-                <p>
-                    Have an idea, opportunity or just want to talk
-                    about technology? Feel free to contact me.
-                </p>
-            </div>
-
-
-            <div class="contact-grid">
-
-                <div class="contact-info reveal">
-
-                    <h3>Let's talk about something great.</h3>
-
-                    <p>
-                        I'm always interested in connecting with
-                        developers, learning new technologies and
-                        discussing software development.
-                    </p>
-
-                    <a href="mailto:abdullahjv791@gmail.com" class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-
-                        <div>
-                            <span>Email Me</span>
-                            <h4>abdullahjv791@gmail.com</h4>
-                        </div>
-                    </a>
-
-
-                    <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-github"></i>
-                        </div>
-
-                        <div>
-                            <span>GitHub</span>
-                            <h4>Visit My GitHub</h4>
-                        </div>
-                    </a>
-
-
-                    <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-linkedin-in"></i>
-                        </div>
-
-                        <div>
-                            <span>LinkedIn</span>
-                            <h4>Connect With Me</h4>
-                        </div>
-                    </a>
-
-                </div>
-
-
-                <!-- Contact Form -->
-                <form class="contact-form reveal" id="contactForm">
-
-                    <h3>Send Me a Message</h3>
-
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" placeholder="Enter your name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Your Email</label>
-                        <input type="email" id="email" placeholder="Enter your email" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" placeholder="Enter subject" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" rows="5" placeholder="Write your message..." required></textarea>
-                    </div>
-
-                    <button type="submit" class="btn primary-btn send-btn">
-                        Send Message <i class="fas fa-paper-plane"></i>
-                    </button>
-
-                    <p id="formStatus" class="form-status" aria-live="polite"></p>
-
-                </form>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- FOOTER -->
-    <footer>
-
-        <div class="footer-content container">
-
-            <a href="#home" class="logo">
-                <span class="logo-bracket">&lt;</span>
-                Abdullah
-                <span class="logo-bracket">/&gt;</span>
-            </a>
-
-            <p>
-                Designed & Developed by Muhammad Abdullah.
-            </p>
-
-            <div class="footer-socials">
-                <a href="mailto:abdullahjv791@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-
-            <p class="copyright">
-                © <span id="year"></span> Muhammad Abdullah. All Rights Reserved.
-            </p>
-
+  <!-- ============ NAVIGATION ============ -->
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="#home" class="logo">Abdullah<span>.</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+      <nav aria-label="Main">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#journey">Learning Journey</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
+      <div class="blob b1" aria-hidden="true"></div>
+      <div class="blob b2" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <h1>Hi, I'm <span class="grad">Muhammad Abdullah</span></h1>
+          <p class="role">Software Engineering Student | Aspiring Backend Developer</p>
+          <!-- The script types these titles one by one; the text below shows if JavaScript is off -->
+          <p class="typed-line"><span id="typed">Software Engineering Student | Java Developer | Aspiring Backend Engineer</span><span class="caret" aria-hidden="true"></span></p>
+          <p class="tagline">Building my foundation in software engineering, one project at a time.</p>
+          <p class="lead">
+            I'm a Software Engineering student at the University of Central Punjab, currently in my 3rd semester.
+            I'm passionate about programming, problem-solving, and building software applications. Currently, I'm
+            learning Java and Object-Oriented Programming while developing my skills in backend development.
+          </p>
+          <div class="btn-row">
+            <a href="#projects" class="btn btn-primary">View My Projects</a>
+            <a href="#contact" class="btn btn-ghost">Contact Me</a>
+          </div>
         </div>
 
-    </footer>
+        <!-- Floating code editor (pure HTML/CSS, no image needed) -->
+        <div class="hero-visual" aria-hidden="true">
+          <span class="float-chip c1">Java</span>
+          <span class="float-chip c2">OOP</span>
+          <span class="float-chip c3">Git</span>
+          <div class="code-window">
+            <div class="code-bar"><i></i><i></i><i></i><span>Abdullah.java</span></div>
+<pre><code><span class="k">public class</span> <span class="t">Abdullah</span> {
 
+    <span class="k">String</span> degree   = <span class="s">"BS Software Engineering"</span>;
+    <span class="k">String</span> semester = <span class="s">"3rd"</span>;
+    <span class="k">String</span> learning = <span class="s">"Java + OOP"</span>;
+    <span class="k">String</span> goal     = <span class="s">"Backend Engineer"</span>;
 
-    <!-- Back To Top -->
-    <button id="backToTop" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+    <span class="k">void</span> <span class="f">keepBuilding</span>() {
+        <span class="c">// one project at a time</span>
+        <span class="f">push</span>(<span class="s">"GitHub"</span>);
+    }
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- ============ ABOUT ============ -->
+    <section class="section reveal" id="about">
+      <div class="container narrow">
+        <h2>About Me</h2>
+        <p>I'm Muhammad Abdullah, a Software Engineering student at the University of Central Punjab. Currently, I'm in my 3rd semester and working on strengthening my programming fundamentals.</p>
+        <p>My current focus is Java programming and Object-Oriented Programming. I'm interested in understanding how software systems work behind the scenes and how backend applications are developed.</p>
+        <p>I enjoy learning new technologies, solving programming problems, and building projects that improve my practical development skills.</p>
+        <p>My long-term goal is to become a professional Backend Software Engineer.</p>
+      </div>
+      <div class="container">
+        <div class="facts">
+          <div class="card"><span class="muted">University</span><strong>UCP</strong></div>
+          <div class="card"><span class="muted">Degree</span><strong>Software Engineering</strong></div>
+          <div class="card"><span class="muted">Semester</span><strong>3rd</strong></div>
+          <div class="card"><span class="muted">Main Language</span><strong>Java</strong></div>
+          <div class="card"><span class="muted">Career Interest</span><strong>Backend Development</strong></div>
+        </div>
+      </div>
+    </section>
 
-    <script src="script.js"></script>
+    <!-- ============ SKILLS ============ -->
+    <section class="section reveal" id="skills">
+      <div class="container">
+        <h2>My Technical Skills</h2>
+        <p class="sub">What I use and study as a student who is always learning.</p>
 
+        <h3 class="cat">Programming Languages</h3>
+        <ul class="skill-grid">
+          <li class="card skill"><span class="ico">☕</span>Java</li>
+          <li class="card skill"><span class="ico">🧩</span>Object-Oriented Programming (OOP)</li>
+        </ul>
+
+        <h3 class="cat">Development Tools</h3>
+        <ul class="skill-grid">
+          <li class="card skill"><span class="ico">💡</span>IntelliJ IDEA</li>
+          <li class="card skill"><span class="ico">🖥️</span>Visual Studio Code</li>
+          <li class="card skill"><span class="ico">🌿</span>Git</li>
+          <li class="card skill"><span class="ico">🐙</span>GitHub</li>
+        </ul>
+
+        <h3 class="cat">Areas of Interest</h3>
+        <ul class="skill-grid">
+          <li class="card skill"><span class="ico">⚙️</span>Backend Development</li>
+          <li class="card skill"><span class="ico">🧠</span>Problem Solving</li>
+          <li class="card skill"><span class="ico">💻</span>Software Development</li>
+          <li class="card skill"><span class="ico">📘</span>Programming Fundamentals</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="section reveal" id="projects">
+      <div class="container">
+        <h2>My Projects</h2>
+        <p class="sub">These three cards are placeholders. Replace them with your real GitHub projects.</p>
+        <div class="grid-3">
+
+          <!-- PROJECT CARD: copy this whole <article> to add a project.
+               Change the icon, title, description, tech chips and the two links. -->
+          <article class="card project">
+            <span class="ico big">☕</span>
+            <span class="tag">Placeholder</span>
+            <h3>Java Programming Projects</h3>
+            <p>Replace this with a short description of a Java project and what you learned building it.</p>
+            <ul class="chips"><li>Java</li><li>IntelliJ IDEA</li></ul>
+            <div class="btn-row">
+              <a href="https://github.com/Abdullah47-sudo" class="btn btn-small btn-primary" target="_blank" rel="noopener">GitHub Repository</a>
+              <a href="#" class="btn btn-small btn-ghost">Live Demo</a>
+            </div>
+          </article>
+          <!-- END PROJECT CARD -->
+
+          <article class="card project">
+            <span class="ico big">🧩</span>
+            <span class="tag">Placeholder</span>
+            <h3>Object-Oriented Programming Projects</h3>
+            <p>Replace this with a project that uses classes, inheritance, polymorphism or abstraction.</p>
+            <ul class="chips"><li>Java</li><li>OOP</li></ul>
+            <div class="btn-row">
+              <a href="https://github.com/Abdullah47-sudo" class="btn btn-small btn-primary" target="_blank" rel="noopener">GitHub Repository</a>
+              <a href="#" class="btn btn-small btn-ghost">Live Demo</a>
+            </div>
+          </article>
+
+          <article class="card project">
+            <span class="ico big">⚙️</span>
+            <span class="tag">Placeholder</span>
+            <h3>Backend Development Projects</h3>
+            <p>Replace this with a backend project once you build one. Remove the demo button if there is none.</p>
+            <ul class="chips"><li>Java</li><li>Git</li></ul>
+            <div class="btn-row">
+              <a href="https://github.com/Abdullah47-sudo" class="btn btn-small btn-primary" target="_blank" rel="noopener">GitHub Repository</a>
+              <a href="#" class="btn btn-small btn-ghost">Live Demo</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EDUCATION ============ -->
+    <section class="section reveal" id="education">
+      <div class="container narrow">
+        <h2>My Education</h2>
+        <ol class="timeline">
+          <li>
+            <h3><span aria-hidden="true">🎓</span> University of Central Punjab (UCP)</h3>
+            <p>Bachelor of Science in Software Engineering</p>
+            <p class="muted">Currently Studying &middot; 3rd Semester</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ LEARNING JOURNEY ============ -->
+    <section class="section reveal" id="journey">
+      <div class="container">
+        <h2>My Learning Journey</h2>
+        <p class="sub">Topics I'm studying right now. I'm learning, not claiming expertise.</p>
+        <div class="grid-3">
+          <article class="card">
+            <h3>Java Programming</h3>
+            <ul class="list"><li>Java fundamentals</li><li>Variables and data types</li><li>Conditional statements</li><li>Loops</li><li>Arrays</li><li>Methods and functions</li></ul>
+          </article>
+          <article class="card">
+            <h3>Object-Oriented Programming</h3>
+            <ul class="list"><li>Classes and Objects</li><li>Encapsulation</li><li>Inheritance</li><li>Polymorphism</li><li>Abstraction</li><li>Constructors</li></ul>
+          </article>
+          <article class="card">
+            <h3>Development Skills</h3>
+            <ul class="list"><li>Writing clean code</li><li>Problem-solving</li><li>Using IntelliJ IDEA</li><li>Using Visual Studio Code</li><li>Git and GitHub</li><li>Exploring backend development</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section reveal" id="contact">
+      <div class="container contact-grid">
+        <div>
+          <h2>Let's Connect</h2>
+          <p class="sub">I'm always interested in connecting with developers, learning new technologies, and discussing software development opportunities.</p>
+          <ul class="contact-list">
+            <li><span>Email</span><a href="mailto:abdullahjv791@gmail.com">abdullahjv791@gmail.com</a></li>
+            <li><span>GitHub</span><a href="https://github.com/Abdullah47-sudo" target="_blank" rel="noopener">github.com/Abdullah47-sudo</a></li>
+            <!-- TODO: replace with your real LinkedIn URL (also in the footer) -->
+            <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener">linkedin.com/in/your-profile</a></li>
+          </ul>
+          <div class="btn-row">
+            <a href="mailto:abdullahjv791@gmail.com" class="btn btn-primary">Email Me</a>
+          </div>
+        </div>
+
+        <form class="card form" id="contactForm" novalidate>
+          <label for="name">Full Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" />
+          <small class="err" id="nameErr"></small>
+          <label for="email">Email Address</label>
+          <input id="email" name="email" type="email" autocomplete="email" />
+          <small class="err" id="emailErr"></small>
+          <label for="subject">Subject</label>
+          <input id="subject" name="subject" type="text" />
+          <small class="err" id="subjectErr"></small>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5"></textarea>
+          <small class="err" id="messageErr"></small>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+          <p class="form-note" id="formNote" role="status">This form opens your email app with the message ready to send. It does not send messages by itself.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>Designed &amp; Developed by Muhammad Abdullah &copy; <span id="year"></span></p>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="#home">Home</a><a href="#about">About</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+      </nav>
+      <div class="socials">
+        <a href="https://github.com/Abdullah47-sudo" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4V21H3V9.75Zm6.5 0h3.84v1.54h.06c.53-1 1.84-2.04 3.78-2.04 4.05 0 4.8 2.66 4.8 6.13V21h-4v-4.9c0-1.17-.02-2.67-1.63-2.67-1.63 0-1.88 1.27-1.88 2.58V21h-4V9.75Z"/></svg>
+        </a>
+        <a href="mailto:abdullahjv791@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
+
+<script>
+// =========================================================
+// JavaScript - interactivity for the portfolio
+// =========================================================
+const nav = document.getElementById("nav");
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+const toTop = document.getElementById("toTop");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// ---------- 1. Mobile menu ----------
+function setMenu(open) {
+  navLinks.classList.toggle("open", open);
+  menuBtn.setAttribute("aria-expanded", String(open));
+  menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+}
+menuBtn.addEventListener("click", () => setMenu(!navLinks.classList.contains("open")));
+navLinks.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setMenu(false)));
+
+// ---------- 2. Nav style + back-to-top on scroll ----------
+window.addEventListener("scroll", () => {
+  nav.classList.toggle("scrolled", window.scrollY > 20);
+  toTop.classList.toggle("show", window.scrollY > 500);
+});
+toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+// ---------- 3. Fade sections in on scroll ----------
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add("visible"); revealObserver.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+
+// ---------- 4. Highlight the active nav link ----------
+const linkObserver = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if (e.isIntersecting) {
+      navLinks.querySelectorAll("a").forEach((a) =>
+        a.classList.toggle("active", a.getAttribute("href") === "#" + e.target.id));
+    }
+  });
+}, { rootMargin: "-45% 0px -50% 0px" });
+document.querySelectorAll("main section[id]").forEach((s) => linkObserver.observe(s));
+
+// ---------- 5. Typing animation in the hero ----------
+// Edit this list to change the titles that get typed.
+const titles = ["Software Engineering Student", "Java Developer", "Aspiring Backend Engineer"];
+const typedEl = document.getElementById("typed");
+if (!reduceMotion) {
+  let t = 0, c = 0, deleting = false;
+  (function tick() {
+    const word = titles[t];
+    c += deleting ? -1 : 1;
+    typedEl.textContent = word.slice(0, c);
+    let delay = deleting ? 40 : 90;
+    if (!deleting && c === word.length) { deleting = true; delay = 1400; }
+    else if (deleting && c === 0) { deleting = false; t = (t + 1) % titles.length; delay = 400; }
+    setTimeout(tick, delay);
+  })();
+}
+
+// ---------- 6. Contact form: validation + opens your email app ----------
+// A plain website has no server, so the form cannot send email on its own.
+// It builds a mailto: link instead. To send for real, connect a service
+// such as Formspree.
+const YOUR_EMAIL = "abdullahjv791@gmail.com";
+const form = document.getElementById("contactForm");
+const note = document.getElementById("formNote");
+const rules = {
+  name:    (v) => v.length >= 2 ? "" : "Please enter your full name.",
+  email:   (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) ? "" : "Please enter a valid email address.",
+  subject: (v) => v.length >= 3 ? "" : "Please enter a subject (at least 3 characters).",
+  message: (v) => v.length >= 10 ? "" : "Your message should be at least 10 characters.",
+};
+function check(field) {
+  const input = form.elements[field];
+  const msg = rules[field](input.value.trim());
+  document.getElementById(field + "Err").textContent = msg;
+  input.classList.toggle("invalid", Boolean(msg));
+  return !msg;
+}
+Object.keys(rules).forEach((f) => form.elements[f].addEventListener("blur", () => check(f)));
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const allValid = Object.keys(rules).map(check).every(Boolean);
+  note.classList.remove("ok");
+  if (!allValid) { note.textContent = "Please fix the highlighted fields."; return; }
+  const d = new FormData(form);
+  const body = `${d.get("message")}\n\nFrom: ${d.get("name")} (${d.get("email")})`;
+  window.location.href = `mailto:${YOUR_EMAIL}?subject=${encodeURIComponent(d.get("subject"))}&body=${encodeURIComponent(body)}`;
+  note.textContent = "Your email app should open with the message ready to send.";
+  note.classList.add("ok");
+  form.reset();
+});
+
+// ---------- 7. Footer year ----------
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
