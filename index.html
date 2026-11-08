@@ -253,6 +253,14 @@ p { margin: 0 0 1rem; }
 .project { position: relative; }
 .tag { position: absolute; top: 1.3rem; right: 1.3rem; padding: 0.2rem 0.7rem; font-size: 0.72rem; color: #f2c97d; border: 1px dashed rgba(242, 201, 125, 0.5); border-radius: 999px; }
 
+/* "Working on it" line in the Projects section */
+.working { display: flex; align-items: center; gap: 0.7rem; margin: 1rem 0 0; font-size: 1.1rem; color: var(--text); }
+.working::before {
+  content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--blue);
+  box-shadow: 0 0 12px var(--blue); animation: pulse 1.6s ease-in-out infinite;
+}
+@keyframes pulse { 50% { opacity: 0.3; } }
+
 .list li { position: relative; padding: 0.3rem 0 0.3rem 1.6rem; color: var(--text); }
 .list li::before { content: "✓"; position: absolute; left: 0; color: var(--blue); font-weight: 700; }
 
@@ -391,49 +399,25 @@ p { margin: 0 0 1rem; }
     <section class="section reveal" id="projects">
       <div class="container">
         <h2>My Projects</h2>
-        <p class="sub">These three cards are placeholders. Replace them with your real GitHub projects.</p>
-        <div class="grid-3">
+        <p class="working">Working on it... my projects will appear here soon.</p>
 
-          <!-- PROJECT CARD: copy this whole <article> to add a project.
-               Change the icon, title, description, tech chips and the two links. -->
+        <!-- LATER, when you have a real project: delete the "working" line above,
+             then remove the comment marks around the block below and edit it.
+
+        <div class="grid-3">
           <article class="card project">
             <span class="ico big">☕</span>
-            <span class="tag">Placeholder</span>
-            <h3>Java Programming Projects</h3>
-            <p>Replace this with a short description of a Java project and what you learned building it.</p>
-            <ul class="chips"><li>Java</li><li>IntelliJ IDEA</li></ul>
-            <div class="btn-row">
-              <a href="https://github.com/Abdullah47-sudo" class="btn btn-small btn-primary" target="_blank" rel="noopener">GitHub Repository</a>
-              <a href="#" class="btn btn-small btn-ghost">Live Demo</a>
-            </div>
-          </article>
-          <!-- END PROJECT CARD -->
-
-          <article class="card project">
-            <span class="ico big">🧩</span>
-            <span class="tag">Placeholder</span>
-            <h3>Object-Oriented Programming Projects</h3>
-            <p>Replace this with a project that uses classes, inheritance, polymorphism or abstraction.</p>
+            <h3>Your Project Name</h3>
+            <p>Short description of what the project does and what you learned.</p>
             <ul class="chips"><li>Java</li><li>OOP</li></ul>
             <div class="btn-row">
-              <a href="https://github.com/Abdullah47-sudo" class="btn btn-small btn-primary" target="_blank" rel="noopener">GitHub Repository</a>
+              <a href="https://github.com/Abdullah47-sudo/YOUR-REPO" class="btn btn-small btn-primary" target="_blank" rel="noopener">GitHub Repository</a>
               <a href="#" class="btn btn-small btn-ghost">Live Demo</a>
             </div>
           </article>
-
-          <article class="card project">
-            <span class="ico big">⚙️</span>
-            <span class="tag">Placeholder</span>
-            <h3>Backend Development Projects</h3>
-            <p>Replace this with a backend project once you build one. Remove the demo button if there is none.</p>
-            <ul class="chips"><li>Java</li><li>Git</li></ul>
-            <div class="btn-row">
-              <a href="https://github.com/Abdullah47-sudo" class="btn btn-small btn-primary" target="_blank" rel="noopener">GitHub Repository</a>
-              <a href="#" class="btn btn-small btn-ghost">Live Demo</a>
-            </div>
-          </article>
-
         </div>
+
+        -->
       </div>
     </section>
 
